@@ -9,8 +9,8 @@
         function doWork(){
             for(var i=0; i <10000; i++)
                 for(var j=0; j < 10000; j++)
-                    for (var k=0; k<200; k++){
-                        
+                    for (var k=0; k<500; k++){
+
                     }
         }
         function displayMessage(msg){
@@ -19,6 +19,10 @@
         }
         function onBtnDoWorkClick(){
             displayMessage('Work Started');
+            setTimeout(triggerWork)
+        }
+
+        function triggerWork(){
             doWork();
             displayMessage('Work Completed');
         }
