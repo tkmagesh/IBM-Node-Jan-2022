@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scheduler</title>
     <script>
-        function doWork(workCompleted){
+        function doWork(workCompleted, workProgress){
             var totalWorkPackets = 1000,
                 currentWorkPacket = 0;
 
@@ -18,26 +18,34 @@
                         }
                 ++currentWorkPacket
                 if (currentWorkPacket < totalWorkPackets) {
+                    if (currentWorkPacket % 10 === 0){
+                        workProgress((currentWorkPacket/totalWorkPackets) * 100)
+                    }
                     setTimeout(oneWorkPacket)
                 } else {
+                    workProgress(100)
                     workCompleted()
                 }
             }
 
             setTimeout(oneWorkPacket)
         }
-        
+
         function displayMessage(msg){
             var divMessages = document.getElementById('divMessages');
             divMessages.innerHTML += msg + '<br/>'
         }
         function onBtnDoWorkClick(){
             displayMessage('Work Started');
-            doWork(onWorkCompleted);
+            doWork(onWorkCompleted, onWorkProgress);
         }
 
         function onWorkCompleted(){
              displayMessage('Work Completed');
+        }
+
+        function onWorkProgress(workCompletionPercent){
+            document.getElementById('workProgress').value = workCompletionPercent
         }
         function onLoad() {
             var btnDoWork = document.getElementById('btnDoWork');
