@@ -81,3 +81,14 @@ Assignment:1
         divide(x,y)
 
     invoke the above methods for x = 100 and y = 200 and print the results
+
+Module System
+    1. CommonJS
+        Exporting :
+            module.exports = ....
+        Importing :
+            using the 'require' function
+    2. ES6 Modules
+
+    Anything defined in a JS file is considered "private" by default
+
