@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scheduler</title>
     <script>
-        function doWork(){
+        function doWork(workCompleted){
             var totalWorkPackets = 1000,
                 currentWorkPacket = 0;
 
@@ -21,6 +21,7 @@
                     setTimeout(oneWorkPacket)
                 } else {
                     console.log("Job Done!!")
+                    workCompleted()
                 }
             }
 
@@ -32,12 +33,11 @@
         }
         function onBtnDoWorkClick(){
             displayMessage('Work Started');
-            setTimeout(triggerWork)
+            doWork(onWorkCompleted);
         }
 
-        function triggerWork(){
-            doWork();
-            displayMessage('Work Completed');
+        function onWorkCompleted(){
+             displayMessage('Work Completed');
         }
         function onLoad() {
             var btnDoWork = document.getElementById('btnDoWork');
