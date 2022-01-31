@@ -92,3 +92,17 @@ Module System
 
     Anything defined in a JS file is considered "private" by default
 
+Assignment:2
+    Create an accummulator.js that exports an object with the following methods
+        add(x)
+        subtract(x)
+        multiply(x)
+        divide(x)
+        getResult()
+
+    create an accumulator-client.js that imports the accumulator.js and invokes the above methods
+        acc.add(10)
+        acc.subtract(5)
+        acc.multiply(10)
+        acc.divide(2)
+        acc.getResult() // should return 25
