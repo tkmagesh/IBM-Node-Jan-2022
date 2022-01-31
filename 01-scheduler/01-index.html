@@ -20,13 +20,13 @@
                 if (currentWorkPacket < totalWorkPackets) {
                     setTimeout(oneWorkPacket)
                 } else {
-                    console.log("Job Done!!")
                     workCompleted()
                 }
             }
 
             setTimeout(oneWorkPacket)
         }
+        
         function displayMessage(msg){
             var divMessages = document.getElementById('divMessages');
             divMessages.innerHTML += msg + '<br/>'
@@ -52,6 +52,9 @@
     <hr>
     <input type="text" name="" id="">
     <button id="btnDoWork">Do Work</button>
+    <div>
+        <progress id="workProgress" min="0" max="100" value="0"></progress>
+    </div>
     <div id="divMessages"></div>
 </body>
 </html>
