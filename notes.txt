@@ -1,0 +1,73 @@
+Magesh Kuppan
+
+Schedule:
+    Start       : 9:30 AM
+    Tea Break   : 11:00 AM (20 mins)
+    Lunch Break : 1:00 PM (1 Hr)
+    Tea Break   : 3:30 PM (20 mins)
+    Wind up     : 5:30 PM
+
+Methodoly:
+    No powerpoints
+    Atleast 50% of the participants should have completed the assignments
+
+Prerequisites:
+    JavaScript
+
+Software requirements:
+    1. Visual Studio Code
+    2. Node.js
+    3. Chrome Browser
+    4. Docker
+
+About You:
+    Name
+    Total Experience
+    Primary Skillset
+    Experience in Node.js (if any)
+    Any interesting books you read / any interesting shows you watched recently
+
+
+Why Node.js?
+
+C
+C++
+    - Python
+1995 - Java
+1999 - .NET
+    - Ruby
+2008 - Node.js
+
+JavaScript
+    Data Types
+        Number, boolean, string, null, undefined, object
+    Programming Constructs
+        var, if else, for, while, do while, switch, break, continue, function, return, try catch, throw, debugger
+    APIs
+        Math, Array, Regex, Date, Error, timer (setTimeout, clearTimeout, setInterval, clearInterval)
+
+Resources needed at runtime
+
+Single Threaded Event Loop
+
+Receptionist
+    1. Visitor
+        a. visitor ledger
+        b. gadget ledger
+        c. to be escorted
+    2. Courier
+        a. courier ledger
+    3. An Associate
+        a. Temp badger ledger
+
+
+Strategy:
+    1. Single Threaded
+        Blocking
+
+    2. Multi Threaded
+        Blocking
+
+    3. Single Threaded
+        Non-Blocking
+        Event Loop
