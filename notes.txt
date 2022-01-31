@@ -71,3 +71,13 @@ Strategy:
     3. Single Threaded
         Non-Blocking
         Event Loop
+
+
+Assignment:1
+    Create a calculator object with the following methods
+        add(x,y)
+        subtract(x,y)
+        multiply(x,y)
+        divide(x,y)
+
+    invoke the above methods for x = 100 and y = 200 and print the results
