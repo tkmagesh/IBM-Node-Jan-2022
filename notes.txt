@@ -106,3 +106,61 @@ Assignment:2
         acc.multiply(10)
         acc.divide(2)
         acc.getResult() // should return 25
+
+JavaScript
+    0. Objects and functions are reference types
+    1. Object is a map / dictionary / hash table
+        collection of key-value pairs
+    2. Objects are dynamic
+    3. Convention:
+        Use the '.' notation for updating existing attributes & use the [] notation for creating new attributes
+    4. functions are first class citizens
+        functions can be treated like objects
+            a. assign functions to variables
+            b. pass functions as arguments
+            c. return functions from functions
+    5. methods = attributes of an object whose value is a function
+    6. this (invocation context)
+        It doesnt matter who owns the function (OR) where the function is
+        What matters is "how the function is invoked"!!
+    7. Function invocation patterns
+        a. As a method of an obj
+            this -> obj
+        b. As a function
+            this -> global
+        c. Using the 'call' method of the function
+        d. Using the 'apply' method of the function
+        e. Using the 'new' keyword
+        f. As an 'Immediately Invoked Function Expression' (IIFE)
+
+Assignment:3
+    Create an object with 'increment' and 'decrement' methods
+    The methods should behave as below
+    var spinner = /*.......*/
+    spinner.increment() // should return 1
+    spinner.increment() // should return 2
+    spinner.increment() // should return 3
+
+    spinner.decrement() // should return 2
+    spinner.decrement() // should return 1
+    spinner.decrement() // should return 0
+    spinner.decrement() // should return -1
+
+    IMPORTANT:
+        there should be NO WAY by which one can influence the outcome of the increment & decrement methods
+
+    The following SHOULD NOT be possible
+        counter = 10000
+        spinner.increment() // => SHOULD NOT return 10001
+
+        OR
+        spinner.counter = 10000
+        spinner.increment() // => SHOULD NOT return 10001
+
+
+var obj = {
+    name : 'Magesh',
+    whoAmI : function(){
+            console.log('I am ', this.name)
+    }
+}
