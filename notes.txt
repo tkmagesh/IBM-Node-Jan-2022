@@ -157,10 +157,18 @@ Assignment:3
         spinner.counter = 10000
         spinner.increment() // => SHOULD NOT return 10001
 
-
-var obj = {
-    name : 'Magesh',
-    whoAmI : function(){
-            console.log('I am ', this.name)
+    Assignment-3 Solution:
+    function spinnerFactory(){
+        var counter = 0;
+        function increment(){
+            return counter++
+        }
+        function decrement(){
+            return counter--
+        }
+        var spinner = {
+            increment: increment,
+            decrement: decrement
+        }
+        return spinner
     }
-}
