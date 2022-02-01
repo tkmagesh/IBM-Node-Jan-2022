@@ -172,3 +172,10 @@ Assignment:3
         }
         return spinner
     }
+
+Assignment:4
+    Read the 'calculator.csv'
+    Perform the respective operation for each line
+    Write the result in another file 'result.txt'
+
+    Solve the problem using sync, async and streams
