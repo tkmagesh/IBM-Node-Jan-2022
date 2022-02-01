@@ -30,7 +30,5 @@ function divide (x,y){
     return x / y
 }
 
-module.exports.add = add
-module.exports.subtract = subtract
-module.exports.multiply = multiply
-module.exports.divide = divide
+var calculator = {add, subtract, multiply, divide}
+module.exports = calculator
