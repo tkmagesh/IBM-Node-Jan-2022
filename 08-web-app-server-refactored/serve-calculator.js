@@ -1,6 +1,6 @@
 var calculator = require('./calculator')
 
-function serveCalculator(req, res){
+function serveCalculator(req, res, next){
     var resourceName = req.urlObj.pathname;
     if (resourceName === '/calculator' && req.method === 'GET') {
         /* Serving calculator 'get' requests */
@@ -10,6 +10,7 @@ function serveCalculator(req, res){
             result = calculator[op](x,y);
         res.write(result.toString())
         res.end()
+        return next()
     } else if (resourceName === '/calculator' && req.method === 'POST') {
         /* Serving calculator 'post' requests */
         var rawData = ''
@@ -29,8 +30,11 @@ function serveCalculator(req, res){
                 result = calculator[op](x,y);
             res.write(result.toString())
             res.end()
+            return next()
         })
-    } 
+    } else {
+        return next()
+    }
 }
 
 module.exports = serveCalculator;

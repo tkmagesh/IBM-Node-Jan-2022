@@ -1,6 +1,6 @@
 var url = require('url')
 
-function dataParser(req){
+function dataParser(req, res, next){
     var urlObj = new url.URL(req.url, 'http://localhost')
     var queryData = {}
     for (var [key, value] of urlObj.searchParams){
@@ -8,6 +8,7 @@ function dataParser(req){
     }
     req['urlObj'] = urlObj;
     req['queryData'] = queryData;
+    next()
 }
 
 module.exports = dataParser;
