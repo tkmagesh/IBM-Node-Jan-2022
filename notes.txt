@@ -179,3 +179,12 @@ Assignment:4
     Write the result in another file 'result.txt'
 
     Solve the problem using sync, async and streams
+
+Assignment:5
+    Modify the server.js to behave as follows:
+        if req is made for '/'
+            serve index.html
+        if req is made for 'index.html'
+            serve index.html
+        else
+            serve 404
