@@ -8,17 +8,23 @@ function isStatic(resource){
     return staticResExtns.indexOf(resourceExtn) >= 0;
 }
 
-function serveStatic(req, res){
+function serveStatic(req, res, next){
     var resourceName = req.urlObj.pathname === '/' ? '/index.html' : req.urlObj.pathname;
     if (isStatic(resourceName)){
         var resourceRequested = path.join(__dirname, resourceName);
         if (!fs.existsSync(resourceRequested)){
-            res.statusCode = 404;
-            res.end()
-            return
+            return next();
         }
-        fs.createReadStream(resourceRequested).pipe(res)
-    } 
+        //fs.createReadStream(resourceRequested).pipe(res)
+        var stream = fs.createReadStream(resourceRequested);
+        stream.pipe(res)
+        stream.on('end', function(){
+            return next();
+        })
+    } else {
+        return next();
+    }
+    
 }
 
 module.exports = serveStatic;
