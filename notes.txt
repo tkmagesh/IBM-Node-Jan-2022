@@ -213,3 +213,10 @@ Assignment:7
         serve the result
     3. else
         serve 404
+
+Assignment:8
+    Refactoring
+        1. data parsing
+        2. serving static resources
+        3. serving calculator
+        4. serving 404
