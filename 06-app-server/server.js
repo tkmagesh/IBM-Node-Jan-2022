@@ -1,6 +1,5 @@
 var http = require('http'),
     url = require('url'),
-    querystring = require('querystring'),
     calculator = require('./calculator');
 
 var server = http.createServer(function(req, res){

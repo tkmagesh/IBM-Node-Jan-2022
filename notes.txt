@@ -198,3 +198,18 @@ Assignment:6
                 serve the resource
             else
                 serve 404
+
+Assignment:7
+    Combine the functionalities of 'web-server' & 'app-server' into one server
+    1. Check if the incoming request for any 'static' resource 
+        static resource = resource with extension '.html'/'.css'/'.js'/'.xml'/'.jpg'/'.jpeg'/'.png'/'.gif'/'.svg'/'.ico'/'.json'
+        if the resource exists
+            serve the resource
+        else
+            serve 404
+    2. check if the request is for '/calculator'
+        parse the querystring
+        process the data
+        serve the result
+    3. else
+        serve 404
