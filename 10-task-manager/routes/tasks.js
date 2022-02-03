@@ -11,25 +11,49 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-    console.log(req.body); //access the req body deserialized from json string
-    //fill in the blanks
-    //res.send('Task added')
-    //id = max id + 1
-    //send the newly created task with status code 201
+   var newTask = req.body;
+   var newTaskId = taskList.reduce(function(result, task){
+       return result > task.id ?result : task.id
+   }, 0) + 1
+   newTask.id = newTaskId
+   taskList.push(newTask);
+   res.status(201).json(newTask)
 });
 
 router.get('/:id', function(req, res, next){
-    console.log('Serving task with id ', req.params.id) //access the route parameter
-    console.log(req.query)
-    res.json(taskList);
+    var id = parseInt(req.params.id)
+    var task = taskList.find(function(task){
+        return task.id === id;
+    })
+    if (!task){
+        res.status(404).end()
+    } else  {
+        res.json(task)
+    }
 });
 
 router.put('/:id', function (req, res, next){
-
+    var id = parseInt(req.params.id)
+    var updatedTask = req.body;
+    taskList = taskList.map(function(task){
+        return task.id === id ? updatedTask : task
+    });
+    res.json(updatedTask);
 });
 
 router.delete('/:id', function(req, res, next){
-    
+    var id = parseInt(req.params.id)
+    var task = taskList.find(function(task){
+        return task.id === id;
+    })
+    if (!task){
+        res.status(404).end()
+    } else  {
+        taskList = taskList.filter(function(task){
+            return task.id !== id
+        });
+        res.status(200).end()
+    }
 })
 
 module.exports = router;
