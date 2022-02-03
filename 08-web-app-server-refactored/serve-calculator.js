@@ -13,25 +13,14 @@ function serveCalculator(req, res, next){
         return next()
     } else if (resourceName === '/calculator' && req.method === 'POST') {
         /* Serving calculator 'post' requests */
-        var rawData = ''
-        req.on('data', function(chunk){
-            rawData += chunk;
-        });
-        req.on('end', function(){
-            /* parsing form data */
-            var formData = {}
-            var searchParams = new URLSearchParams(rawData)
-            for (var [key, value] of searchParams){
-                formData[key] = value
-            };
-            var op = formData.op,
-                x = parseInt(formData.n1),
-                y = parseInt(formData.n2),
-                result = calculator[op](x,y);
-            res.write(result.toString())
-            res.end()
-            return next()
-        })
+        var formData = req.formData;
+        var op = formData.op,
+            x = parseInt(formData.n1),
+            y = parseInt(formData.n2),
+            result = calculator[op](x,y);
+        res.write(result.toString())
+        res.end()
+        return next()
     } else {
         return next()
     }
