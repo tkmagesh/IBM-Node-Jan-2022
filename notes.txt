@@ -269,3 +269,11 @@ To install development dependencies
 
 To run custom configured script commands
     npm run-script <script command name>
+
+To install express-generator
+    npm install -g express-generator
+
+To generate the application
+    In an empty folder run the following command
+        express -v hbs .
+
