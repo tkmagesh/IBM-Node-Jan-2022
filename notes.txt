@@ -230,3 +230,33 @@ Assignment:10
 
 Assignment:11
     refactor the data extraction logic in 'serve-calculator' POST request handling to data-parser.js
+
+package.json
+    contains the meta data of the application
+        name
+        version
+        author
+        repository
+        license
+        scripts
+            commands that you want to configure
+        dependencies
+            dependencies for running the application
+        devDependencies
+            dependencies for development activities
+
+npm
+    package manager to node.js
+
+to create a package.json file
+    npm init
+
+Example
+npm install color@4.1.2
+import and use in logger.js
+    var chalk = require('chalk')
+    console.lo
+    
+
+To setup the application
+    npm install
