@@ -280,3 +280,10 @@ To generate the application
 
 Assignment-12
     implement task api with in memory data
+
+Assignment-13
+    implement the task repository (file storage)
+    use JSON.strigify & JSON.parse to serialize and deserialize the data
+    IMPORTANT: file read & write operations should be async
+    
+ES6 features
