@@ -224,3 +224,6 @@ Assignment:8
 Assignment:9
     Make the public folder path as an input to the serve-static middleware
     Once the middleware is initialized, the public folder path should not allowed to be modified
+
+Assignment:10
+    Everytime a request is received, log the 'method' and 'url' of the request in the console
