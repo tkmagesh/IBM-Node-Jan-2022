@@ -251,6 +251,9 @@ npm
 to create a package.json file
     npm init
 
+to create a package.json file with defaults
+    npm init -y
+
 Example
 npm install color@4.1.2
 import and use in logger.js
@@ -260,3 +263,9 @@ import and use in logger.js
 
 To setup the application
     npm install
+
+To install development dependencies
+    npm install --save-dev <module name>
+
+To run custom configured script commands
+    npm run-script <script command name>
