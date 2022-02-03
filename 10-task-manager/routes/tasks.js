@@ -1,22 +1,22 @@
-var express = require('express');
-var router = express.Router();
-var taskController = require('../controllers/taskController')
+const express = require('express');
+const router = express.Router();
+const taskController = require('../controllers/taskController')
 
 
 router.get('/', function(req, res, next){
-    var taskList = taskController.getAll()
+    const taskList = taskController.getAll()
     res.json(taskList);
 });
 
 router.post('/', function(req, res, next){
-   var newTaskData = req.body;
-   var newTask = taskController.createNew(newTaskData)
+   const newTaskData = req.body;
+   const newTask = taskController.createNew(newTaskData)
    res.status(201).json(newTask)
 });
 
 router.get('/:id', function(req, res, next){
-    var id = parseInt(req.params.id)
-    var task = taskController.getById(id)
+    const id = parseInt(req.params.id)
+    const task = taskController.getById(id)
     if (!task){
         res.status(404).end()
     } else  {
@@ -25,20 +25,20 @@ router.get('/:id', function(req, res, next){
 });
 
 router.put('/:id', function (req, res, next){
-    var id = parseInt(req.params.id)
-    var updatedTaskData = req.body;
-    var task = taskController.getById(id)
+    const id = parseInt(req.params.id)
+    const updatedTaskData = req.body;
+    const task = taskController.getById(id)
     if (!task){
         res.status(404).end()
     } else  {
-        var updatedTask = taskController.save(id, updatedTaskData)
+        const updatedTask = taskController.save(id, updatedTaskData)
         res.json(updatedTask);
     }
 });
 
 router.delete('/:id', function(req, res, next){
-    var id = parseInt(req.params.id)
-    var task = taskController.getById(id)
+    const id = parseInt(req.params.id)
+    const task = taskController.getById(id)
     if (!task){
         res.status(404).end()
     } else  {

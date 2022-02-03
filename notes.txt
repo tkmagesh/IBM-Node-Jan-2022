@@ -287,3 +287,23 @@ Assignment-13
     IMPORTANT: file read & write operations should be async
     
 ES6 features
+    1. let
+    2. const
+    3. array destructuring
+    4. rest operator (arrays)
+    5. spread operator (arrays)
+    6. object destructuring
+    7. rest operator (object)
+    8. spread operator (object)
+    9. default parameters
+    10. arrow functions
+    11. object construction enhancements
+    12. iterators
+    13. classes
+    14. template literals
+    15. promise (TBD)
+    16. async await (TBD)
+
+    for other features - http://es6-features.org
+
+
