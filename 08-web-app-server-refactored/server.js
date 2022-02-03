@@ -4,8 +4,10 @@ var http = require('http'),
     serveStatic = require('./serve-static'), //factory
     serveCalculator = require('./serve-calculator'),
     serve404 = require('./serve-404'),
+    logger = require('./logger'),
     app = require('./app');
 
+app.use(logger);
 app.use(dataParser);
 app.use(serveStatic(path.join(__dirname, 'public')));
 app.use(serveCalculator);
