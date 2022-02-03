@@ -220,3 +220,7 @@ Assignment:8
         2. serving static resources
         3. serving calculator
         4. serving 404
+
+Assignment:9
+    Make the public folder path as an input to the serve-static middleware
+    Once the middleware is initialized, the public folder path should not allowed to be modified

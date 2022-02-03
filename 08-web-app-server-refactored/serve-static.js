@@ -11,7 +11,7 @@ function isStatic(resource){
 function serveStatic(req, res, next){
     var resourceName = req.urlObj.pathname === '/' ? '/index.html' : req.urlObj.pathname;
     if (isStatic(resourceName)){
-        var resourceRequested = path.join(__dirname, resourceName);
+        var resourceRequested = path.join(__dirname, 'public', resourceName);
         if (!fs.existsSync(resourceRequested)){
             return next();
         }
