@@ -329,3 +329,19 @@ Data Access
             
         Reference:
             https://blog.logrocket.com/node-js-logging-best-practices/
+
+Server Sent Events
+    Server Prep
+        Headers to the client
+            'content-type' : 'text/event-stream'
+            'connection' : 'keep-alive'
+            'Access-Control-Allow-Origin' : '*'
+
+        Send the events
+            'event:<name of the event>\n'
+            'data:<data to be sent>\n\n'
+
+    Client
+        Use the EventSource API
+            https://www.w3schools.com/html/html5_eventsource.asp
+        
