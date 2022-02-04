@@ -2,7 +2,6 @@ var fs = require('fs')
 var calculator = require('./calculator')
 var CalculatorParser = require('./calculator-parser');
 
-console.log(calculator);
 var resultStream = fs.createWriteStream('./result-stream.txt', 'utf8');
 const parser = new CalculatorParser('./calculator.csv');
 
