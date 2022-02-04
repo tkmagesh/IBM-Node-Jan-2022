@@ -877,3 +877,28 @@ query dataForProjectScreen{
 }
 
 
+Unit Testing:
+  Organize tests
+  Write tests
+    Arrange
+    Act
+    Assert
+  Mock the dependencies
+
+  feature
+    behavior
+      scenario
+        arrange
+        act
+        assert
+
+  describe
+  it
+
+  describe("Calculator", () => {
+    it("should be able to add given numbers", () => {
+      const calculator = new Calculator();
+      const result = calculator.add(1, 2);
+      expect(result).toBe(3);
+    });
+  })
