@@ -344,4 +344,536 @@ Server Sent Events
     Client
         Use the EventSource API
             https://www.w3schools.com/html/html5_eventsource.asp
-        
+
+
+Graphql Query examples
+=======================
+
+query noOfUsers{
+  totalUsers
+}
+
+query allUsers{
+  users {
+    id
+    firstName
+    lastName
+    email
+    fullName
+  }
+}
+
+query allUsersWithCountAndProjects{
+  totalUsers
+  users {
+    id
+    firstName
+    lastName
+    email
+    fullName
+  }
+  projects{
+    id
+    name
+    description
+  }
+}
+
+query allUserEmails {
+  users{
+    id
+    email
+    fullName
+  }
+}
+
+#listing all the projects with their bugs and users
+query allProjects{
+  #all the projects
+  projects{
+    id
+    name
+    description
+    isActive
+    #all the bugs
+    bugs {
+      id
+      title
+      description
+      severity
+      status
+      createdBy{
+        id
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+}
+
+#using arguments
+query user1{
+  user(id : "user-1"){
+    id
+    firstName
+    lastName
+    email
+    fullName
+  }
+}
+
+query usersByIds {
+  usersById(ids : ["user-1"]){
+    id
+    firstName
+    lastName
+    email
+  }
+}
+
+#using alias
+query usersByAlias {
+  users {
+    id
+    fName : firstName
+    lName: lastName
+    email
+  }
+}
+
+query getAppUserWithAlias{
+  appUser : user(id : "user-1"){
+    id
+    fName : firstName
+    lName : lastName
+    email
+  }
+}
+
+
+#using variables
+query getUserById($userId : ID!) {
+  user(id : $userId){
+    id
+    firstName
+    lastName
+    email
+  }
+}
+
+#using enum
+query projectByBugStatus{
+  project(id : "project-2") {
+    id
+		name
+    description
+    isActive
+    bugs(status : OPEN){
+      id
+      title
+      description
+      severity
+      status
+    }
+  }
+}
+
+#using variables and enums
+query projectByBugStatus2($projectId : ID!, $bugStatus : Status){
+  project(id :$projectId) {
+    id
+		name
+    description
+    isActive
+    bugs(status : $bugStatus){
+      id
+      title
+      description
+      severity
+      status
+    }
+  }
+}
+
+#fragment
+fragment bugDetails on Bug {
+  id
+  title
+  description
+  severity
+  status
+}
+
+query projectsWithBugFragment{
+  projects {
+    id
+    name
+    description
+    bugs {
+      ...bugDetails
+    }
+  }
+}
+
+#example-2
+#################
+fragment openBugDetails on Project{
+  bugs(status : OPEN) {
+    id
+    title
+    description
+    severity
+    status
+  }
+}
+
+query ProjectsWithOpenBugs{
+  projects{
+    id
+    name
+    description
+    isActive
+    ...openBugDetails
+  }
+}
+
+#################
+fragment openBugDetails2 on Project{
+  bugs(status : OPEN) {
+    ...bugDetails
+  }
+}
+
+query ProjectsWithOpenBugs2{
+  projects{
+    id
+    name
+    description
+    isActive
+    ...openBugDetails2
+  }
+}
+
+
+#variables with fragments
+fragment bugDetailsByStatus on Project {
+  bugs(status : $bugStatus){
+      id
+      title
+      description
+      severity
+      status
+    }
+}
+
+
+query projectByBugStatus3($projectId : ID! = "project-1", $bugStatus : Status = OPEN){
+  project(id :$projectId) {
+    id
+		name
+    description
+    isActive
+    ...bugDetailsByStatus
+  }
+}
+
+#fragment on interface
+fragment actionDetails on Action {
+  id
+  date
+  bugId
+}
+
+query bugsWithActions{
+  bugs{
+    ...bugDetails
+    actions {
+      ...actionDetails
+    }
+  }
+}
+
+query allActionsForBug{
+  actions(bugId : "bug-"){
+    ...actionDetails
+  }
+}
+
+
+#using directives (@include & @skip)
+query projectsWithBugs($includeDetails : Boolean = false){
+  projects{
+    id
+    name
+    description
+    isActive
+    bugs(status : OPEN) @include(if : $includeDetails) {
+      id
+      title
+      description
+      severity
+      status
+    }
+  }
+}
+
+#mutations
+mutation createNewUser{
+  createUser(firstName : "Magesh", lastName : "Kuppan", email : "mageshk@mail.com"){
+    id
+    firstName
+    lastName
+    email
+    fullName
+  }
+}
+
+#create a new project and retrive the newly created project with bugs
+mutation createNewProject{
+  createProject(project : {
+    name : "Voyager",
+    description : "Visual type exlorer for graphql",
+    isActive : true
+  }){
+    id
+    name
+    description
+    isActive
+    bugs{
+      ...bugDetails
+    }
+  }
+}
+
+mutation createNewProjectWithVariables($newProject : ProjectInput){
+  createProject(project : $newProject){
+    id
+    name
+    description
+    isActive
+    bugs{
+      ...bugDetails
+    }
+  }
+}
+
+mutation createBug{
+  createBug(bug : {
+    title : "Server not listening",
+    description : "server is not responding to requests",
+    severity :CRITICAL,
+    projectId : "project-5",
+    userId : "user-1"
+  }){
+    ...bugDetails,
+    actions{
+      id
+      date
+      bugId
+    }
+  }
+}
+
+mutation CommentABug1{
+  commentBug(commentInfo : {
+    bugId : "bug-6",
+    commentedBy : "user-1",
+    comment: "this need to be fixed sooner"
+  }){
+    ...bugDetails
+  }
+}
+
+mutation CommentABug2{
+  commentBug(commentInfo : {
+    bugId : "bug-6",
+    commentedBy : "user-2",
+    comment: "This is being looked at"
+  }){
+    ...bugDetails
+  }
+}
+
+mutation fixABug{
+  fixBug(fixInfo : {
+    bugId : "bug-6",
+    fixedBy : "user-1",
+    solution : "undo the commits"
+  }){
+    ...bugDetails
+  }
+}
+
+mutation closeABug{
+	closeBug(closeBugInfo : {
+    bugId : "bug-6",
+    closedBy : "user-2",
+		reason : "All tests are green"
+  }){
+    ...bugDetails
+  }
+}
+
+#get the bug with all the actions
+query getBug6{
+  bug(id : "bug-6"){
+    ...bugDetails,
+    actions {
+      id
+      date
+      bugId
+    }
+  }
+}
+
+fragment userDetails on User {
+  id
+  firstName
+  lastName
+  email
+}
+
+#using interfaces & inline fragments
+query getBug6WithAllActions{
+  bug(id : "bug-6"){
+    ...bugDetails,
+    actions {
+      __typename
+      id
+      date
+      bugId
+      ... on OpenAction {
+        openedBy{
+          ...userDetails
+        }
+        description
+      }
+      ... on CommentAction {
+        commentedBy{
+          ...userDetails
+        }
+        comment
+      }
+      ... on FixAction {
+        fixedBy{
+          ...userDetails
+        }
+        solution
+      }
+      ... on CloseAction {
+        closedBy{
+          ...userDetails
+        }
+        reason
+      }
+    }
+  }
+}
+
+
+#interospection query
+query interospection{
+  __schema{
+    queryType{
+      name
+      kind
+      description
+      fields{
+        name
+        description
+        args{
+          name
+          description
+          type{
+            name
+            kind
+          }
+        }
+        type{
+          name
+          description
+          kind
+          
+        }
+      }
+    }
+  }
+}
+
+
+query implementationsOfActionInterface{
+  __type(name : "Action"){
+    name
+    kind
+    possibleTypes{
+      name
+      kind
+    }
+  }
+}
+
+
+query enumValues{
+  __type(name : "Status"){
+    enumValues{
+      name
+      description
+      __typename
+    }
+  }
+}
+
+#assignment
+fragment bugDetailsWithActions on Bug{
+	...bugDetails
+  actions {
+      __typename
+      id
+      date
+      bugId
+      ... on OpenAction {
+        openedBy{
+          ...userDetails
+        }
+        description
+      }
+      ... on CommentAction {
+        commentedBy{
+          ...userDetails
+        }
+        comment
+      }
+      ... on FixAction {
+        fixedBy{
+          ...userDetails
+        }
+        solution
+      }
+      ... on CloseAction {
+        closedBy{
+          ...userDetails
+        }
+        reason
+      }
+    }
+}
+query dataForProjectScreen{
+  project(id : "project-5") {
+    id
+		name
+    description
+    isActive
+    openBugs : bugs(status : OPEN){
+      ...bugDetailsWithActions
+    }
+    inProgressBugs : bugs(status : IN_PROGRESS){
+      ...bugDetailsWithActions
+    }
+    closedBugs : bugs(status : CLOSED){
+      ...bugDetailsWithActions
+    }
+  }
+}
+
+
