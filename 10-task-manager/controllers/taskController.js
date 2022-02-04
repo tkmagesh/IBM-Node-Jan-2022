@@ -1,29 +1,75 @@
+
+const taskRepository = require('../repository/taskRepository')
 var taskList = []
 
+//using promises
 function getAll(){
-    //get the data from the file
-    return taskList;
+    /* const p = taskRepository.getData();
+    return p.then(function(data){
+        return data.tasks;
+    }); */
+    return taskRepository.getData()
+        .then(data => data.tasks)
 }
 
 function getById(id){
-    //get the data from the file
-   /*  return taskList.find(function(task){
-        return task.id === id;
-    }); */
-    return taskList.find(task => task.id === id)
+    return taskRepository
+        .getData()
+        .then(data => {
+            const {tasks} = data;
+            const task = tasks.find(task => task.id === id)
+            return task;
+        })
 }
 
 function createNew(newTask){
-   /*  var newTaskId = taskList.reduce(function(result, task){
-       return result > task.id ?result : task.id
-   }, 0) + 1 */
-   var newTaskId = taskList.reduce((result, task) => result > task.id ? result : task.id, 0) + 1;
-   newTask.id = newTaskId
-   //get the data from the file
-   taskList.push(newTask);
-   //save the data in the file
-   return newTask;
+   return taskRepository
+    .getData()
+    .then(data => {
+        const {tasks} = data;
+        var newTaskId = tasks.reduce((result, task) => result > task.id ? result : task.id, 0) + 1;
+        newTask.id = newTaskId
+        tasks.push(newTask);
+        return taskRepository.saveData(tasks)
+            .then(() => newTask)
+    })
 }
+
+//using callbacks
+/* function getAll(callback){
+    taskRepository.getData(function(err, taskList){
+        if (err){
+            return callback(err)
+        }
+        return callback(null, taskList);
+    })
+}
+
+function getById(id, callback){
+   taskRepository.getData(function(err, taskList){
+        if (err){
+            return callback(err)
+        }
+        const task = taskList.find(task => task.id === id)
+        return callback(null, task);
+    })
+}
+
+function createNew(newTask, callback){
+   
+   taskRepository.getData(function(err, taskList){
+        if (err){
+            return callback(err)
+        }
+        var newTaskId = taskList.reduce((result, task) => result > task.id ? result : task.id, 0) + 1;
+        newTask.id = newTaskId
+
+        taskList.push(newTask);
+        taskRepository.saveData(taskList, function(){
+            callback(null, newTask)
+        });
+    });
+} */
 
 function save(id, taskData){
     //get the data from the file

@@ -4,24 +4,44 @@ const taskController = require('../controllers/taskController')
 
 
 router.get('/', function(req, res, next){
-    const taskList = taskController.getAll()
-    res.json(taskList);
+   /*  const p = taskController.getAll()
+    p.then(function(taskList){
+        res.json(taskList);
+    })
+    .catch(function(err){
+        console.log(err)
+        next()
+    }) */
+
+    taskController
+        .getAll()
+        .then(tasks => res.json(tasks))
+        .catch(err => {
+            console.log(err)
+            next(err);
+        });
+    
 });
 
 router.post('/', function(req, res, next){
    const newTaskData = req.body;
-   const newTask = taskController.createNew(newTaskData)
-   res.status(201).json(newTask)
+   taskController.createNew(newTaskData)
+    .then(newTask => res.status(202).json(newTask))
+    .catch(err => {
+        console.log(err)
+        return next(err)
+    });
 });
 
 router.get('/:id', function(req, res, next){
     const id = parseInt(req.params.id)
-    const task = taskController.getById(id)
-    if (!task){
-        res.status(404).end()
-    } else  {
-        res.json(task)
-    }
+    console.log(id)
+    taskController
+        .getById(id)
+        .then(task => {
+            if (!task) return res.status(404).end()
+            res.json(task)
+        })
 });
 
 router.put('/:id', function (req, res, next){
