@@ -310,3 +310,22 @@ ES6 features
     for other features - http://es6-features.org
 
 
+Data Access
+    MySQL
+        https://www.npmjs.com/package/mysql
+        https://www.w3schools.com/nodejs/nodejs_mysql.asp
+
+    Cors
+
+
+    Security
+        https://www.npmjs.com/package/helmet
+
+    Logging
+        Http tracing 
+            https://www.npmjs.com/package/morgan
+        App Logging
+            https://www.npmjs.com/package/winston
+            
+        Reference:
+            https://blog.logrocket.com/node-js-logging-best-practices/

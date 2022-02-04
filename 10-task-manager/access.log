@@ -1,0 +1,2 @@
+::1 - - [04/Feb/2022:07:12:33 +0000] "GET /tasks HTTP/1.1" 200 224 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36"
+::1 - - [04/Feb/2022:07:12:47 +0000] "POST /tasks HTTP/1.1" 202 48 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36"
