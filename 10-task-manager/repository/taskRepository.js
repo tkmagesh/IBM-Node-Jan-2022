@@ -1,4 +1,20 @@
-const fs = require('fs')
+const fsPromises = require('fs/promises')
+const path = require('path')
+const dbFile = path.join(__dirname, '../data/db.json')
+
+//using fs/promises
+async function getData(){
+    const fileContents = await fsPromises.readFile(dbFile, 'utf8')
+    const data = JSON.parse(fileContents);
+    return data
+}
+
+function saveData(taskList){
+    return fsPromises.writeFile(dbFile, JSON.stringify({ tasks : taskList}))
+} 
+
+
+/* const fs = require('fs')
 const path = require('path')
 const dbFile = path.join(__dirname, '../data/db.json')
 
@@ -25,7 +41,7 @@ function saveData(taskList){
             return resolveFn()
         });
     })
-} 
+}  */
 
 //using callbacks
 /* 

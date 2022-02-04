@@ -1,6 +1,6 @@
 
 const taskRepository = require('../repository/taskRepository')
-var taskList = []
+
 //using async await
 async function getAll(){
     const data = await taskRepository.getData()
@@ -12,7 +12,6 @@ async function getById(id){
     const {tasks} = data;
     const task = tasks.find(task => task.id === id)
     return task;
-
 }
 
 async function createNew(newTask){
@@ -26,16 +25,11 @@ async function createNew(newTask){
 }
 
 async function save(id, taskData){
-    //get the data from the file
-    /* taskList = taskList.map(function(task){
-        return task.id === id ? taskData : task
-    }); */
     const data = await taskRepository.getData();
     let taskList = data.tasks
     taskList = taskList.map(task => task.id === id ? taskData : task)
     await taskRepository.saveData(taskList)
     return taskData;
-    //save the data in the file
 }
 
 async function remove(id){
